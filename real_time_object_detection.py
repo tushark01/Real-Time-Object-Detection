@@ -26,15 +26,6 @@ from numpy.random.mtrand import random
 # model = MobileNetSSD_deploy.caffemodel (required)
 # confidence = 0.2 (default)
 
-#* SSD (Single Shot MultiBox Detector) is a popular algorithm in object detection
-#* It has no delegated region proposal network and predicts the boundary boxes and the classes directly from feature maps in one single pass
-#* To improve accuracy, SSD introduces: small convolutional filters to predict object classes and offsets to default boundary boxes
-#* Mobilenet is a convolution neural network used to produce high-level features
-
-# !SSD is designed for object detection in real-time
-#! The SSD object detection composes of 2 parts: Extract feature maps, and apply convolution filters to detect objects
-
-
 
 video= cv2.VideoCapture(1)
 
@@ -76,21 +67,6 @@ while True:
 	# !The function:
 
 	blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)),(1/127.5), (300, 300), 127.5, swapRB=True)
-	#* image: the input image we want to preprocess before passing it through our deep neural network for classification
-	
-	
-	#& scalefactor: After we perform mean subtraction we can optionally scale our images by some factor. Default = 1.0
-	#^scalefactor  should be 1/sigma as we're actually multiplying the input channels (after mean subtraction) by scalefactor (Here 1/127.5)
-
-
-	#! swapRB : OpenCV assumes images are in BGR channel order; however, the 'mean' value assumes we are using RGB order.
-	#! To resolve this discrepancy we can swap the R and B channels in image  by setting this value to 'True'
-
-
-	#! By default OpenCV performs this channel swapping for us.
-
-	
-	#* pass the blob through the network and obtain the predictions and predictions
 	net.setInput(blob) 
 	
 	
